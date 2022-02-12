@@ -14,8 +14,7 @@ class StudentClassController extends Controller
     }
 
     public function StudentClassAdd(){
-        $data['allData'] = StudentClass::all();
-        return view('backend.setup.student_class.add_class', $data);
+        return view('backend.setup.student_class.add_class');
     }
 
     public function StudentClassStore(Request $request){
