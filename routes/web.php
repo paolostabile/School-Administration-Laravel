@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\Setup\FeeAmountController;
 use App\Http\Controllers\Backend\Setup\ExamTypeController;
 use App\Http\Controllers\Backend\Setup\SchoolSubjectController;
 use App\Http\Controllers\Backend\Setup\AssignSubjectController;
+use App\Http\Controllers\Backend\Setup\DesignationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -138,4 +139,13 @@ Route::prefix('setups')->group(function(){
     Route::get('assign/subject/edit/{class_id}', [AssignSubjectController::class, 'EditAssignSubject'])->name('assign.subject.edit');
     Route::post('assign/subject/update/{class_id}', [AssignSubjectController::class, 'UpdateAssignSubject'])->name('update.assign.subject');
     Route::get('assign/subject/details/{class_id}', [AssignSubjectController::class, 'DetailsAssignSubject'])->name('assign.subject.details');
+
+    // Designation All Routes
+
+    Route::get('designation/view', [DesignationController::class, 'ViewDesignation'])->name('designation.view');
+    Route::get('designation/add', [DesignationController::class, 'DesignationAdd'])->name('designation.add');
+    Route::post('designation/store', [DesignationController::class, 'DesignationStore'])->name('store.designation');
+    Route::get('designation/edit/{id}', [DesignationController::class, 'DesignationEdit'])->name('designation.edit');
+    Route::post('designation/update/{id}', [DesignationController::class, 'DesignationUpdate'])->name('update.designation');
+    Route::get('designation/delete/{id}', [DesignationController::class, 'DesignationDelete'])->name('designation.delete');
 });
