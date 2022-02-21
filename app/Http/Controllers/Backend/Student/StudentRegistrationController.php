@@ -8,6 +8,11 @@ use App\Models\AssignStudent;
 use App\Models\DiscountStudent;
 use App\Models\User;
 
+use App\Models\StudentYear;
+use App\Models\StudentClass;
+use App\Models\StudentGroup;
+use App\Models\StudentShift;
+
 class StudentRegistrationController extends Controller
 {
     public function StudentRegistrationView(){
@@ -16,6 +21,14 @@ class StudentRegistrationController extends Controller
     }
 
     public function StudentRegistrationAdd(){
-        return view('backend.student.student_registration.student_add');
+        $data['years'] = StudentYear::all();
+        $data['classes'] = StudentClass::all();
+        $data['groups'] = StudentGroup::all();
+        $data['shifts'] = StudentShift::all();
+        return view('backend.student.student_registration.student_add', $data);
+    }
+
+    public function StudentRegistrationStore(Request $request){
+        
     }
 }
