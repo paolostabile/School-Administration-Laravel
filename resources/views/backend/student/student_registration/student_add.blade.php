@@ -90,7 +90,7 @@
                               <div class="form-group">
                                  <h5>Religion <span class="text-danger">*</span></h5>
                                  <div class="controls">
-                                    <select name="gender" id="gender" required="" class="form-control">
+                                    <select name="religion" id="religion" required="" class="form-control">
                                        <option value="" selected="" disabled="">Select Religion</option>
                                        <option value="Christian">Christian</option>
                                        <option value="Islam">Islam</option>
