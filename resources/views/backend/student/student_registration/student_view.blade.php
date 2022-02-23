@@ -7,6 +7,7 @@
 		<!-- Main content -->
 		<section class="content">
 		  <div class="row">
+		  <div class="col-12">
 			<div class="box bb-3 border-warning">
 				<div class="box-header">
 					<h4 class="box-title">Student <strong>Search</strong></h4>
@@ -14,7 +15,7 @@
 				<div class="box-body">
 					<form action="" method="">
 						<div class="row">
-							<!-- 4th Row -->
+							<!-- 1st Row -->
 							<div class="col-md-4">
                               <div class="form-group">
                                  <h5>Year <span class="text-danger"></span></h5>
@@ -22,7 +23,7 @@
                                     <select name="year_id" required="" class="form-control">
                                        <option value="" selected="" disabled="">Select Year</option>
                                        @foreach($years as $year)
-                                       <option value="{{$year->id}}">{{$year->name}}</option>
+                                       <option value="{{$year->id}}" {{(@$year_id == $year->id)? "selected":""}}>{{$year->name}}</option>
                                        @endforeach
                                     </select>
                                  </div>
@@ -36,7 +37,7 @@
                                     <select name="class_id" required="" class="form-control">
                                        <option value="" selected="" disabled="">Select Class</option>
                                        @foreach($classes as $class)
-                                       <option value="{{$class->id}}">{{$class->name}}</option>
+                                       <option value="{{$class->id}}" {{(@$class_id == $class->id)? "selected":""}}>{{$class->name}}</option>
                                        @endforeach
                                     </select>
                                  </div>
@@ -47,6 +48,8 @@
                               <input type="submit" class="btn btn-rounded btn-dark mb-5" name="search" value="Search">
                            </div>
                            <!-- End Col md 4 -->
+						</div>
+						<!-- End 1st Col 12 -->
 						</div>
 						<!-- End Row -->
 					</form>
@@ -66,7 +69,14 @@
 							<tr>
 								<th width="5%">SL</th>
 								<th>Name</th>
-                                <th>Id No</th>
+								<th>ID No</th>
+                                <th>Roll</th>
+								<th>Year</th>
+								<th>Class</th>
+								<th>Image</th>
+								@if(Auth::user()->role == "Admin")
+								<th>Code</th>
+								@endif
 								<th width="25%">Action</th>
 							</tr>
 						</thead>
@@ -74,8 +84,16 @@
                             @foreach($allData as $key => $value)
 							<tr>
 								<td>{{$key+1}}</td>
-								<td>{{$value->class_id}}</td>
-                                <td>{{$value->year_id}}</td>
+								<td>{{$value['student']['name']}}</td>
+								<td>{{$value['student']['id_no']}}</td>
+								<td>{{$value->roll}} </td>
+                                <td>{{$value['student_year']['name']}}</td>
+								<td>{{$value['student_class']['name']}}</td>
+								<td>
+									<img id="showImage" src="{{(!empty($value['student']['image'])) ? url('upload/student_images/'.$value['student']['image']):
+									url('upload/no_image.jpg')}}" style="width:75px;">
+								</td>
+								<td>{{$value['student']['code']}}</td>
 								<td>
                                     <a href="" class="btn btn-info">Edit</a>
                                     <a href="" class="btn btn-danger" id="delete">Delete</a>
