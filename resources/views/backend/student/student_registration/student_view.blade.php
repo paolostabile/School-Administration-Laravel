@@ -13,7 +13,7 @@
 					<h4 class="box-title">Student <strong>Search</strong></h4>
 				</div>
 				<div class="box-body">
-					<form action="" method="">
+					<form action="{{route('student.year.class.wise')}}" method="get">
 						<div class="row">
 							<!-- 1st Row -->
 							<div class="col-md-4">
@@ -64,6 +64,7 @@
 				<!-- /.box-header -->
 				<div class="box-body">
 					<div class="table-responsive">
+					@if(!'search')
 					  <table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
@@ -76,6 +77,8 @@
 								<th>Image</th>
 								@if(Auth::user()->role == "Admin")
 								<th>Code</th>
+								@else
+								<th>Gender</th>
 								@endif
 								<th width="25%">Action</th>
 							</tr>
@@ -93,10 +96,14 @@
 									<img id="showImage" src="{{(!empty($value['student']['image'])) ? url('upload/student_images/'.$value['student']['image']):
 									url('upload/no_image.jpg')}}" style="width:75px;">
 								</td>
+								@if(Auth::user()->role == "Admin")
 								<td>{{$value['student']['code']}}</td>
+								@else
+								<td>{{$value['student']['gender']}}</td>
+								@endif
 								<td>
-                                    <a href="" class="btn btn-info">Edit</a>
-                                    <a href="" class="btn btn-danger" id="delete">Delete</a>
+									<a href="{{ route('student.registration.edit',$value->student_id) }}" class="btn btn-info">Edit</a>
+                                	<a href="{{ route('student.registration.promotion',$value->student_id) }}" class="btn btn-danger" id="delete">Promotion</a>
                                 </td>
 							</tr>
                             @endforeach
@@ -104,6 +111,54 @@
 						<tfoot>
 						</tfoot>
 					  </table>
+					  @else
+					  <table id="example1" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th width="5%">SL</th>
+								<th>Name</th>
+								<th>ID No</th>
+                                <th>Roll</th>
+								<th>Year</th>
+								<th>Class</th>
+								<th>Image</th>
+								@if(Auth::user()->role == "Admin")
+								<th>Code</th>
+								@else
+								<th>Gender</th>
+								@endif
+								<th width="25%">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+                            @foreach($allData as $key => $value)
+							<tr>
+								<td>{{$key+1}}</td>
+								<td>{{$value['student']['name']}}</td>
+								<td>{{$value['student']['id_no']}}</td>
+								<td>{{$value->roll}} </td>
+                                <td>{{$value['student_year']['name']}}</td>
+								<td>{{$value['student_class']['name']}}</td>
+								<td>
+									<img id="showImage" src="{{(!empty($value['student']['image'])) ? url('upload/student_images/'.$value['student']['image']):
+									url('upload/no_image.jpg')}}" style="width:75px;">
+								</td>
+								@if(Auth::user()->role == "Admin")
+								<td>{{$value['student']['code']}}</td>
+								@else
+								<td>{{$value['student']['gender']}}</td>
+								@endif
+								<td>
+                                	<a href="{{ route('student.registration.edit',$value->student_id) }}" class="btn btn-info">Edit</a>
+                                	<a href="{{ route('student.registration.promotion',$value->student_id) }}" class="btn btn-danger" id="delete">Promotion</a>
+								</td>
+							</tr>
+                            @endforeach
+						</tbody>
+						<tfoot>
+						</tfoot>
+					  </table>
+					  @endif
 					</div>
 				</div>
 				<!-- /.box-body -->
