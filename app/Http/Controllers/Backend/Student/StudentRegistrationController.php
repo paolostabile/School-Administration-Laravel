@@ -13,6 +13,7 @@ use App\Models\StudentClass;
 use App\Models\StudentGroup;
 use App\Models\StudentShift;
 use DB;
+use PDF;
 
 class StudentRegistrationController extends Controller
 {
@@ -220,7 +221,10 @@ class StudentRegistrationController extends Controller
     } // End Method 
 
     public function StudentRegistrationDetails($student_id){
-     $data['details'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+        $data['details'] = AssignStudent::with(['student','discount'])->where('student_id',$student_id)->first();
+        $pdf = PDF::loadView('backend.student.student_registration.student_details_pdf', $data);
+        $pdf->SetProtection(['copy', 'print'], '', 'pass');
+        return $pdf->stream('document.pdf');
     }
-    
+
 }
