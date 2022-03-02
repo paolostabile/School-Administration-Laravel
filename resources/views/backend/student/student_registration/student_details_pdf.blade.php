@@ -26,10 +26,13 @@
       <table id="customers">
          <tr>
             <td>
-               <h2>Vsite</h2>
-            </td>
+               <h2>
+                  <?php $image_path = '/upload/vsite.jpeg'; ?>
+                  <img src="{{ public_path() . $image_path }}" width="200" height="75">
+               </h2>
+               </td>
             <td>
-               <h2>Vsite </h2>
+               <h2>Vsite</h2>
                <p>School Address: </p>
                <p>Phone: 1234567890</p>
                <p>Email: school@vsite.hr</p>
