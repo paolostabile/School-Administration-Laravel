@@ -119,9 +119,21 @@ $route = Route::current()->getName();
             <li class="{{ ($route == 'marks.entry.grade')?'active':'' }}"><a href="{{ route('marks.entry.grade') }}"><i class="ti-more"></i>Marks Grade</a></li> 
           </ul>
         </li>
+        <li class="treeview {{ ($prefix == '/accounts')?'active':'' }}">
+          <a href="#">
+            <i data-feather="mail"></i> <span> Accounts Management</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ ($route == 'student.fee.view')?'active':'' }}"><a href="{{ route('student.fee.view') }}"><i class="ti-more"></i>Student Fee</a></li> 
+            <li class="{{ ($route == 'account.salary.view')?'active':'' }}"><a href="{{ route('account.salary.view') }}"><i class="ti-more"></i>Employee Salary</a></li> 
+          </ul>
+        </li>
 
         <li class="header nav-small-cap">User Interface</li>
-		  
+        
         <li class="treeview">
           <a href="#">
             <i data-feather="grid"></i>
