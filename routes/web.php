@@ -38,6 +38,7 @@ use App\Http\Controllers\Backend\Account\OtherCostController;
 use App\Http\Controllers\Backend\Report\ProfitController;
 use App\Http\Controllers\Backend\Report\MarkSheetController;
 use App\Http\Controllers\Backend\Report\AttendanceReportController;
+use App\Http\Controllers\Backend\Report\ResultReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -316,6 +317,14 @@ Route::group(['middleware' => 'auth'], function(){
         // Attendance Report Routes 
         Route::get('attendance/report/view', [AttendanceReportController::class, 'AttenReportView'])->name('attendance.report.view');
         Route::get('report/attendance/get', [AttendanceReportController::class, 'AttenReportGet'])->name('report.attendance.get');
+
+        // Student Result Report Routes 
+        Route::get('student/result/view', [ResultReportController::class, 'ResultView'])->name('student.result.view');
+        Route::get('student/result/get', [ResultReportController::class, 'ResultGet'])->name('report.student.result.get');
+
+        // Student ID Card Routes 
+        Route::get('student/idcard/view', [ResultReportController::class, 'IdcardView'])->name('student.idcard.view');
+        Route::get('student/idcard/get', [ResultReportController::class, 'IdcardGet'])->name('report.student.idcard.get');
     }); 
 
 }); //End Middleware Auth Route

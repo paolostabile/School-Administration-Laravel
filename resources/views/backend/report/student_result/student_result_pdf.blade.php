@@ -36,31 +36,22 @@
                <p>School Address</p>
                <p>Phone : 343434343434</p>
                <p>Email : support@easylerningbd.com</p>
-               <p> <b>Employee Attendance Report </b> </p>
+               <p> <b>Student Result Report </b> </p>
             </td>
          </tr>
       </table>
       <br> <br>
-      <strong>Employee Name : </strong> {{ $allData['0']['user']['name'] }}, <strong> ID No : </strong>{{ $allData['0']['user']['id_no'] }}, <strong> Month : </strong> {{ $month }}
+      <strong>Result of : </strong> {{ $allData['0']['exam_type']['name'] }} 
       <br> <br>
       <table id="customers">
          <tr>
             <td width="50%">
-               <h4>Date</h4>
+               <h4>Year / Session : </h4>
+               {{ $allData['0']['year']['name'] }} 
             </td>
             <td width="50%">
-               <h4> Attend Status </h4>
-            </td>
-         </tr>
-         @foreach($allData as $value)
-         <tr>
-            <td width="50%"> {{ date('d-m-Y', strtotime($value->date )) }}  </td>
-            <td width="50%"> {{ $value->attend_status }} </td>
-         </tr>
-         @endforeach
-         <tr>
-            <td colspan="2">
-               <strong>Total Absent : </strong> {{ $absents }} , <strong> Total Leave : </strong> {{ $leaves }}
+               <h4> Class :  </h4>
+               {{ $allData['0']['student_class']['name'] }} 
             </td>
          </tr>
       </table>

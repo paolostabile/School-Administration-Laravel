@@ -36,34 +36,29 @@
                <p>School Address</p>
                <p>Phone : 343434343434</p>
                <p>Email : support@easylerningbd.com</p>
-               <p> <b>Employee Attendance Report </b> </p>
+               <p> <b>Student ID Card </b> </p>
             </td>
          </tr>
       </table>
-      <br> <br>
-      <strong>Employee Name : </strong> {{ $allData['0']['user']['name'] }}, <strong> ID No : </strong>{{ $allData['0']['user']['id_no'] }}, <strong> Month : </strong> {{ $month }}
-      <br> <br>
+      @foreach($allData as $value)
       <table id="customers">
          <tr>
-            <td width="50%">
-               <h4>Date</h4>
-            </td>
-            <td width="50%">
-               <h4> Attend Status </h4>
-            </td>
+            <td>IMAGE</td>
+            <td>Easy School </td>
+            <td> Student Id Card</td>
          </tr>
-         @foreach($allData as $value)
          <tr>
-            <td width="50%"> {{ date('d-m-Y', strtotime($value->date )) }}  </td>
-            <td width="50%"> {{ $value->attend_status }} </td>
+            <td>Name : {{ $value['student']['name'] }}</td>
+            <td>Session : {{ $value['student_year']['name'] }}</td>
+            <td> Class : {{ $value['student_class']['name'] }}</td>
          </tr>
-         @endforeach
          <tr>
-            <td colspan="2">
-               <strong>Total Absent : </strong> {{ $absents }} , <strong> Total Leave : </strong> {{ $leaves }}
-            </td>
+            <td>Roll : {{ $value->roll }} </td>
+            <td>ID No : {{ $value['student']['id_no'] }}</td>
+            <td> Mobile:{{ $value['student']['mobile'] }} </td>
          </tr>
       </table>
+      @endforeach
       <br> <br>
       <i style="font-size: 10px; float: right;">Print Data : {{ date("d M Y") }}</i>
       <hr style="border: dashed 2px; width: 95%; color: #000000; margin-bottom: 50px">
