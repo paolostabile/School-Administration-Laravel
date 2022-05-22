@@ -51,6 +51,8 @@ use App\Http\Controllers\Backend\Report\ResultReportController;
 |
 */
 
+Route::group(['middleware' => 'prevent-back-history'],function(){
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -328,3 +330,5 @@ Route::group(['middleware' => 'auth'], function(){
     }); 
 
 }); //End Middleware Auth Route
+
+});  // Prevent Back Middleare 
